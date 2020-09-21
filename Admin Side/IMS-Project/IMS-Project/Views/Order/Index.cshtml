@@ -1,0 +1,88 @@
+﻿@model IEnumerable<IMS_Project.Models.Order>
+
+@{
+    ViewBag.Title = "Order";
+
+}
+    <p>
+         @using (Html.BeginForm("Index", "Order", FormMethod.Get))
+            {
+                  @Html.TextBox("search") <input type = "submit" name = "submit" value = "Search" / >
+            }
+    </p>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payment.PaymentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingDetail.ShippingID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Taxes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.CustomerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.PaymentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShippingDetail.ShippingID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Taxes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+
+       
+
+        <td>
+            <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "Order", new { id = item.OrderID })" aria-label="Edit" data-toggle="tooltip" data-placement="top" title="Edit">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-sm btn-info" href="@Url.Action("Details", "Order", new { id = item.OrderID })" aria-label="Details" data-toggle="tooltip" data-placement="top" title="View Details">
+                <i class="fa fa-info" aria-hidden="true"></i>
+            </a>
+          
+        </td>
+
+
+    </tr>
+        }
+
+    </table>
